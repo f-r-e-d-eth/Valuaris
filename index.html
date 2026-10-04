@@ -45,25 +45,21 @@
     </header>
 
     <section class="summary-grid">
-      <article class="card metric">
-        <span>Market value</span>
-        <strong id="portfolioMarket">€0</strong>
-        <div class="bar"><i id="marketBar"></i></div>
+      <article class="card portfolio-card top-portfolio">
+        <div class="card-title-row">
+          <div>
+            <h3>Portfolio value vs. intrinsic value</h3>
+            <p>Market value compared with today's and future intrinsic range.</p>
+          </div>
+          <span class="pill" id="portfolioRatio">—</span>
+        </div>
+        <div id="portfolioBars" class="portfolio-bars top-bars"></div>
       </article>
-      <article class="card metric">
-        <span>Estimated intrinsic value</span>
-        <strong id="portfolioIntrinsic">€0 – €0</strong>
-        <div class="rangebar"><i id="intrinsicBarMin"></i><b id="intrinsicBarMax"></b></div>
-      </article>
-      <article class="card metric">
+
+      <article class="card metric owned-card">
         <span>Stocks owned</span>
         <strong id="stocksOwned">0 / 10</strong>
         <div id="ownedDots" class="dots"></div>
-      </article>
-      <article class="card metric">
-        <span id="futureLabel">5Y intrinsic value</span>
-        <strong id="portfolioFuture">€0 – €0</strong>
-        <div class="rangebar future"><i id="futureBarMin"></i><b id="futureBarMax"></b></div>
       </article>
     </section>
 
@@ -78,7 +74,13 @@
               <th>Growth<br><small>(% / year)</small></th>
               <th id="futureTableHeading">5Y value<br><small>(EUR / share)</small></th>
               <th>Owned<br><small>(shares)</small></th>
-              <th>Price vs. value<br><small>today / discounted future</small></th>
+              <th class="valuation-help">Price vs. value <span class="help-icon">?</span><br><small>today / discounted future</small>
+  <div class="valuation-tooltip">
+    <strong>Valuation logic</strong>
+    <span>Future intrinsic value = Value today × (1 + growth)<sup>years</sup></span>
+    <span>Discounted future value = Future value ÷ (1 + required return)<sup>years</sup></span>
+  </div>
+</th>
             </tr>
           </thead>
           <tbody id="stockRows"></tbody>
@@ -87,31 +89,7 @@
       <p class="hint">Price is placeholder data. Future valuation is discounted back to today using the single global required return above.</p>
     </section>
 
-    <section class="bottom-grid">
-      <article class="card portfolio-card">
-        <div class="card-title-row">
-          <div>
-            <h3>Portfolio value vs. intrinsic value</h3>
-            <p>Only companies with owned shares are included.</p>
-          </div>
-          <span class="pill" id="portfolioRatio">—</span>
-        </div>
-        <div id="portfolioBars" class="portfolio-bars"></div>
-      </article>
 
-      <article class="card explanation">
-        <h3>Valuation logic</h3>
-        <p>Growth increases future intrinsic value. The single required-return setting represents the return we demand before accepting the extra risk of owning stocks.</p>
-        <div class="formula">
-          <span>Future intrinsic value</span>
-          <strong>Value today × (1 + growth)<sup>years</sup></strong>
-        </div>
-        <div class="formula">
-          <span>Future value discounted to today</span>
-          <strong>Future value ÷ (1 + required return)<sup>years</sup></strong>
-        </div>
-      </article>
-    </section>
   </main>
 
   <script src="app.js"></script>
