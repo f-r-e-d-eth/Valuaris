@@ -113,26 +113,35 @@ function updateBars(p){
     {label:"Intrinsic value today", min:p.min, max:p.max, type:"range"},
     {label:`${years}Y intrinsic value`, min:p.futureMin, max:p.futureMax, type:"range"}
   ];
-  const max=Math.max(p.market,p.max,p.futureMax,1);
+
+  const scaleMax=Math.max(p.market,p.max,p.futureMax,1);
 
   portfolioBars.innerHTML=rows.map(r=>{
     if(r.type==="market"){
+      const valueW=r.value/scaleMax*100;
       return `
         <div class="pb-row market">
           <span class="pb-label">${r.label}</span>
           <span class="pb-value">${eur(r.value)}</span>
-          <div class="pb-track"><div class="pb-fill" style="width:${r.value/max*100}%"></div></div>
+          <div class="pb-track segmented">
+            <div class="seg seg-market" style="width:${valueW}%"></div>
+            <div class="seg seg-rest" style="width:${100-valueW}%"></div>
+          </div>
         </div>`;
     }
-    const minW=r.min/max*100;
-    const maxW=r.max/max*100;
+
+    const minW=r.min/scaleMax*100;
+    const rangeW=(r.max-r.min)/scaleMax*100;
+    const restW=Math.max(0,100-minW-rangeW);
+
     return `
       <div class="pb-row range-row">
         <span class="pb-label">${r.label}</span>
         <span class="pb-value">${eur(r.min)} – ${eur(r.max)}</span>
-        <div class="pb-track">
-          <div class="pb-range" style="width:${maxW}%"></div>
-          <div class="range-cut" style="left:${minW}%;width:${Math.max(0,maxW-minW)}%"></div>
+        <div class="pb-track segmented">
+          <div class="seg seg-min" style="width:${minW}%"></div>
+          <div class="seg seg-range" style="width:${rangeW}%"></div>
+          <div class="seg seg-rest" style="width:${restW}%"></div>
         </div>
       </div>`;
   }).join("");
