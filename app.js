@@ -48,8 +48,19 @@ function renderRows(){
         <td class="future-value">${eur(fvMin)} – ${eur(fvMax)}</td>
         <td><input class="num shares" type="number" min="0" step="1" value="${s.shares}" data-i="${i}" data-field="shares"></td>
         <td class="valuation">
-          <div class="valuation-track"><i class="valuation-dot" style="left:${pos}%"></i></div>
-          <div class="valuation-text">${one(ratio)}× midpoint · ${text}</div>
+          <div class="valuation-pair">
+            <div class="valuation-row">
+              <span class="valuation-label">Today</span>
+              <div class="valuation-track"><i class="valuation-dot" style="left:${pos}%"></i></div>
+              <span class="valuation-ratio">${one(ratio)}×</span>
+            </div>
+            <div class="valuation-row future">
+              <span class="valuation-label">${years}Y PV</span>
+              <div class="valuation-track"><i class="valuation-dot" style="left:${futurePos}%"></i></div>
+              <span class="valuation-ratio">${one(futureRatio)}×</span>
+            </div>
+          </div>
+          <div class="valuation-text">PV: ${eur(discountedMin)} – ${eur(discountedMax)}</div>
         </td>
       </tr>`;
   }).join("");
