@@ -14,6 +14,12 @@ const stocks = [
 let years = 5;
 let requiredReturnRate = 2.0;
 const eur = v => new Intl.NumberFormat("en-IE",{style:"currency",currency:"EUR",maximumFractionDigits:0}).format(v);
+const eurCompact = v => {
+  const abs=Math.abs(v);
+  if(abs>=1000000) return "€"+(v/1000000).toFixed(abs>=10000000?0:1).replace(/\.0$/,"")+"m";
+  if(abs>=1000) return "€"+(v/1000).toFixed(abs>=100000?0:1).replace(/\.0$/,"")+"k";
+  return eur(v);
+};
 const one = v => new Intl.NumberFormat("en-IE",{maximumFractionDigits:1}).format(v);
 
 function future(v,g){ return v * Math.pow(1 + g/100, years); }
@@ -122,7 +128,7 @@ function updateBars(p){
       return `
         <div class="pb-row market">
           <span class="pb-label">${r.label}</span>
-          <span class="pb-value">${eur(r.value)}</span>
+          <span class="pb-value">${eurCompact(r.value)}</span>
           <div class="pb-track segmented">
             <div class="seg seg-market" style="width:${valueW}%"></div>
             <div class="seg seg-rest" style="width:${100-valueW}%"></div>
@@ -137,7 +143,7 @@ function updateBars(p){
     return `
       <div class="pb-row range-row">
         <span class="pb-label">${r.label}</span>
-        <span class="pb-value">${eur(r.min)} – ${eur(r.max)}</span>
+        <span class="pb-value">${eurCompact(r.min)} – ${eurCompact(r.max)}</span>
         <div class="pb-track segmented">
           <div class="seg seg-min" style="width:${minW}%"></div>
           <div class="seg seg-range" style="width:${rangeW}%"></div>
