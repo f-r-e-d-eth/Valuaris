@@ -99,3 +99,89 @@ body.dark .valuation-dot{border-color:#152127}
 .valuation-pair{margin-bottom:7px}
 .valuation-row{grid-template-columns:48px minmax(120px,1fr) 42px}
 .valuation-row.future .valuation-track{outline:1px solid rgba(47,143,194,.18)}
+
+.summary-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 220px;
+  gap:16px;
+  margin-bottom:16px;
+}
+.top-portfolio{padding:20px}
+.owned-card{display:flex;flex-direction:column;justify-content:center}
+.top-bars{margin-top:18px}
+.top-bars .pb-row{grid-template-columns:180px 110px 1fr}
+.pb-track{
+  position:relative;
+  background:#eef2f2;
+}
+.pb-range{
+  height:100%;
+  border-radius:6px;
+  background:linear-gradient(
+    90deg,
+    #0f5f4e 0 33%,
+    #4ea877 33% 66%,
+    #ffffff 66% 100%
+  );
+}
+body.dark .pb-track{background:#243138}
+body.dark .pb-range{
+  background:linear-gradient(
+    90deg,
+    #0f5f4e 0 33%,
+    #4ea877 33% 66%,
+    #c6ced2 66% 100%
+  );
+}
+.valuation-help{position:relative}
+.help-icon{
+  display:inline-grid;
+  place-items:center;
+  width:17px;height:17px;
+  margin-left:4px;
+  border-radius:50%;
+  border:1px solid var(--line);
+  color:var(--muted);
+  font-size:11px;
+  cursor:help;
+}
+.valuation-tooltip{
+  display:none;
+  position:absolute;
+  z-index:50;
+  top:52px;
+  right:8px;
+  width:320px;
+  padding:14px 16px;
+  border-radius:12px;
+  background:var(--card);
+  border:1px solid var(--line);
+  box-shadow:0 12px 30px rgba(0,0,0,.16);
+  color:var(--ink);
+  text-align:left;
+  font-weight:500;
+}
+.valuation-tooltip strong{display:block;margin-bottom:8px}
+.valuation-tooltip span{display:block;font-size:12px;line-height:1.5;color:var(--muted);margin-top:6px}
+.valuation-help:hover .valuation-tooltip{display:block}
+body.dark th, body.dark td{border-bottom-color:#2b3940}
+body.dark tbody tr td{border-bottom-color:#2b3940}
+@media(max-width:1100px){
+  .summary-grid{grid-template-columns:1fr}
+  .owned-card{min-height:120px}
+}
+
+.pb-row.range-row .pb-track{overflow:hidden}
+.pb-row.range-row .pb-range{position:absolute;left:0;top:0;bottom:0;width:100%}
+.range-cut{
+  position:absolute;
+  top:0;bottom:0;
+  background:rgba(255,255,255,.34);
+  border-left:2px solid rgba(255,255,255,.95);
+  border-right:2px solid rgba(255,255,255,.95);
+}
+body.dark .range-cut{
+  background:rgba(198,206,210,.15);
+  border-left-color:#c6ced2;
+  border-right-color:#c6ced2;
+}
