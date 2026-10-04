@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Valuaris</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brandmark">⌁</div>
+      <div><h1>Valuaris</h1><p>Value over noise</p></div>
+    </div>
+
+    <nav class="nav">
+      <button class="navitem active">⌂ <span>Overview</span></button>
+      <button class="navitem">◔ <span>Portfolio</span></button>
+      <button class="navitem">▥ <span>Mr. Market</span></button>
+    </nav>
+
+    <div class="section-label">Companies</div>
+    <div id="companyList" class="companies"></div>
+
+    <button class="settings">⚙ <span>Settings</span></button>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h2>Overview</h2>
+        <p>A focused view on the businesses we follow.</p>
+      </div>
+      <div class="horizon-switch" aria-label="Forecast horizon">
+        <button class="horizon active" data-years="5">5Y</button>
+        <button class="horizon" data-years="10">10Y</button>
+      </div>
+    </header>
+
+    <section class="summary-grid">
+      <article class="card metric">
+        <span>Market value</span>
+        <strong id="portfolioMarket">€0</strong>
+        <div class="bar"><i id="marketBar"></i></div>
+      </article>
+      <article class="card metric">
+        <span>Estimated intrinsic value</span>
+        <strong id="portfolioIntrinsic">€0 – €0</strong>
+        <div class="rangebar"><i id="intrinsicBarMin"></i><b id="intrinsicBarMax"></b></div>
+      </article>
+      <article class="card metric">
+        <span>Stocks owned</span>
+        <strong id="stocksOwned">0 / 10</strong>
+        <div id="ownedDots" class="dots"></div>
+      </article>
+      <article class="card metric">
+        <span id="futureLabel">5Y intrinsic value</span>
+        <strong id="portfolioFuture">€0 – €0</strong>
+        <div class="rangebar future"><i id="futureBarMin"></i><b id="futureBarMax"></b></div>
+      </article>
+    </section>
+
+    <section class="card table-card">
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Price<br><small>(EUR)</small></th>
+              <th>Intrinsic value<br><small>(EUR / share)</small></th>
+              <th>Growth<br><small>(% / year)</small></th>
+              <th id="futureTableHeading">5Y value<br><small>(EUR / share)</small></th>
+              <th>Owned<br><small>(shares)</small></th>
+              <th>Price vs. value</th>
+            </tr>
+          </thead>
+          <tbody id="stockRows"></tbody>
+        </table>
+      </div>
+      <p class="hint">Price is placeholder data for the mockup. Intrinsic value, growth and shares are editable.</p>
+    </section>
+
+    <section class="bottom-grid">
+      <article class="card portfolio-card">
+        <div class="card-title-row">
+          <div>
+            <h3>Portfolio value vs. intrinsic value</h3>
+            <p>Only companies with owned shares are included.</p>
+          </div>
+          <span class="pill" id="portfolioRatio">—</span>
+        </div>
+        <div id="portfolioBars" class="portfolio-bars"></div>
+      </article>
+
+      <article class="card explanation">
+        <h3>What this mockup does</h3>
+        <p>It deliberately ignores purchase price and profit/loss. The page compares what the market asks today with what we estimate the businesses are worth.</p>
+        <div class="formula">
+          <span>Future value</span>
+          <strong>Intrinsic value × (1 + growth)<sup>years</sup></strong>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
