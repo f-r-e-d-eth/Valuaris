@@ -31,9 +31,16 @@
         <h2>Overview</h2>
         <p>A focused view on the businesses we follow.</p>
       </div>
-      <div class="horizon-switch" aria-label="Forecast horizon">
-        <button class="horizon active" data-years="5">5Y</button>
-        <button class="horizon" data-years="10">10Y</button>
+      <div class="top-controls">
+        <label class="return-control">
+          <span>Required return</span>
+          <div><input id="requiredReturn" type="number" step="0.1" min="0" value="2.0"><b>% / year</b></div>
+        </label>
+        <div class="horizon-switch" aria-label="Forecast horizon">
+          <button class="horizon active" data-years="5">5Y</button>
+          <button class="horizon" data-years="10">10Y</button>
+        </div>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle night mode" title="Night mode">☾</button>
       </div>
     </header>
 
@@ -71,13 +78,13 @@
               <th>Growth<br><small>(% / year)</small></th>
               <th id="futureTableHeading">5Y value<br><small>(EUR / share)</small></th>
               <th>Owned<br><small>(shares)</small></th>
-              <th>Price vs. value</th>
+              <th>Price vs. value<br><small>today / discounted future</small></th>
             </tr>
           </thead>
           <tbody id="stockRows"></tbody>
         </table>
       </div>
-      <p class="hint">Price is placeholder data for the mockup. Intrinsic value, growth and shares are editable.</p>
+      <p class="hint">Price is placeholder data. Future valuation is discounted back to today using the single global required return above.</p>
     </section>
 
     <section class="bottom-grid">
@@ -93,11 +100,15 @@
       </article>
 
       <article class="card explanation">
-        <h3>What this mockup does</h3>
-        <p>It deliberately ignores purchase price and profit/loss. The page compares what the market asks today with what we estimate the businesses are worth.</p>
+        <h3>Valuation logic</h3>
+        <p>Growth increases future intrinsic value. The single required-return setting represents the return we demand before accepting the extra risk of owning stocks.</p>
         <div class="formula">
-          <span>Future value</span>
-          <strong>Intrinsic value × (1 + growth)<sup>years</sup></strong>
+          <span>Future intrinsic value</span>
+          <strong>Value today × (1 + growth)<sup>years</sup></strong>
+        </div>
+        <div class="formula">
+          <span>Future value discounted to today</span>
+          <strong>Future value ÷ (1 + required return)<sup>years</sup></strong>
         </div>
       </article>
     </section>
