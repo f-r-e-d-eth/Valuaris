@@ -98,21 +98,10 @@ function calculatePortfolio(){
 }
 
 function updateSummary(p){
-  portfolioMarket.textContent=eur(p.market);
-  portfolioIntrinsic.textContent=`${eur(p.min)} – ${eur(p.max)}`;
-  portfolioFuture.textContent=`${eur(p.futureMin)} – ${eur(p.futureMax)}`;
   stocksOwned.textContent=`${p.owned} / ${stocks.length}`;
-  futureLabel.textContent=`${years}Y intrinsic value`;
   futureTableHeading.innerHTML=`${years}Y value<br><small>(EUR / share)</small>`;
 
   ownedDots.innerHTML=stocks.map(s=>`<i class="dot ${s.shares>0?"on":""}"></i>`).join("");
-
-  const max=Math.max(p.market,p.max,p.futureMax,1);
-  marketBar.style.width=`${p.market/max*100}%`;
-  intrinsicBarMin.style.width=`${p.min/max*100}%`;
-  intrinsicBarMax.style.width=`${p.max/max*100}%`;
-  futureBarMin.style.width=`${p.futureMin/max*100}%`;
-  futureBarMax.style.width=`${p.futureMax/max*100}%`;
 
   const mid=(p.min+p.max)/2;
   portfolioRatio.textContent=mid? `Market / value: ${(p.market/mid).toFixed(2)}×` : "—";
@@ -120,19 +109,33 @@ function updateSummary(p){
 
 function updateBars(p){
   const rows=[
-    ["Market value",p.market,"market"],
-    ["Intrinsic · conservative",p.min,"cons"],
-    ["Intrinsic · optimistic",p.max,"opt"],
-    [`${years}Y · conservative`,p.futureMin,"future-min"],
-    [`${years}Y · optimistic`,p.futureMax,"future-max"]
+    {label:"Market value", value:p.market, type:"market"},
+    {label:"Intrinsic value today", min:p.min, max:p.max, type:"range"},
+    {label:`${years}Y intrinsic value`, min:p.futureMin, max:p.futureMax, type:"range"}
   ];
-  const max=Math.max(...rows.map(r=>r[1]),1);
-  portfolioBars.innerHTML=rows.map(([label,value,cls])=>`
-    <div class="pb-row ${cls}">
-      <span class="pb-label">${label}</span>
-      <span class="pb-value">${eur(value)}</span>
-      <div class="pb-track"><div class="pb-fill" style="width:${value/max*100}%"></div></div>
-    </div>`).join("");
+  const max=Math.max(p.market,p.max,p.futureMax,1);
+
+  portfolioBars.innerHTML=rows.map(r=>{
+    if(r.type==="market"){
+      return `
+        <div class="pb-row market">
+          <span class="pb-label">${r.label}</span>
+          <span class="pb-value">${eur(r.value)}</span>
+          <div class="pb-track"><div class="pb-fill" style="width:${r.value/max*100}%"></div></div>
+        </div>`;
+    }
+    const minW=r.min/max*100;
+    const maxW=r.max/max*100;
+    return `
+      <div class="pb-row range-row">
+        <span class="pb-label">${r.label}</span>
+        <span class="pb-value">${eur(r.min)} – ${eur(r.max)}</span>
+        <div class="pb-track">
+          <div class="pb-range" style="width:${maxW}%"></div>
+          <div class="range-cut" style="left:${minW}%;width:${Math.max(0,maxW-minW)}%"></div>
+        </div>
+      </div>`;
+  }).join("");
 }
 
 function update(){
