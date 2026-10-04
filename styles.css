@@ -200,3 +200,7 @@ body.dark .seg-rest{background:#c6ced2}
 .pb-row.range-row .pb-track,
 .pb-row.market .pb-track{position:relative}
 .range-cut,.pb-range{display:none !important}
+
+/* Final neutral tones for portfolio beams */
+.seg-rest{background:#edf1f2}
+body.dark .seg-rest{background:#5a666c}
