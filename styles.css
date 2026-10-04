@@ -185,3 +185,18 @@ body.dark .range-cut{
   border-left-color:#c6ced2;
   border-right-color:#c6ced2;
 }
+
+/* Shared portfolio bar scale: exactly three visual segments */
+.pb-track.segmented{
+  display:flex;
+  overflow:hidden;
+  background:transparent;
+}
+.seg{height:100%}
+.seg-min,.seg-market{background:#0f5f4e}
+.seg-range{background:#78bd94}
+.seg-rest{background:#ffffff}
+body.dark .seg-rest{background:#c6ced2}
+.pb-row.range-row .pb-track,
+.pb-row.market .pb-track{position:relative}
+.range-cut,.pb-range{display:none !important}
