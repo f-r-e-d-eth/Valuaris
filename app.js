@@ -12,10 +12,12 @@ const stocks = [
 ];
 
 let years = 5;
+let requiredReturnRate = 2.0;
 const eur = v => new Intl.NumberFormat("en-IE",{style:"currency",currency:"EUR",maximumFractionDigits:0}).format(v);
 const one = v => new Intl.NumberFormat("en-IE",{maximumFractionDigits:1}).format(v);
 
 function future(v,g){ return v * Math.pow(1 + g/100, years); }
+function discountedFuture(v,g){ return future(v,g) / Math.pow(1 + requiredReturnRate/100, years); }
 function midpoint(s){ return (s.min+s.max)/2; }
 
 function renderCompanies(){
@@ -27,6 +29,11 @@ function renderRows(){
     const fvMin=future(s.min,s.growth), fvMax=future(s.max,s.growth);
     const ratio=s.price/midpoint(s);
     const pos=Math.max(3,Math.min(97,(ratio/1.5)*100));
+    const discountedMin=discountedFuture(s.min,s.growth);
+    const discountedMax=discountedFuture(s.max,s.growth);
+    const discountedMid=(discountedMin+discountedMax)/2;
+    const futureRatio=s.price/discountedMid;
+    const futurePos=Math.max(3,Math.min(97,(futureRatio/1.5)*100));
     let text= ratio < .85 ? "Below value" : ratio > 1.15 ? "Above value" : "Around value";
     return `
       <tr>
@@ -130,6 +137,24 @@ document.querySelectorAll(".horizon").forEach(btn=>{
     document.querySelectorAll(".horizon").forEach(b=>b.classList.toggle("active",b===btn));
     update();
   });
+});
+
+requiredReturn.addEventListener("change", e=>{
+  requiredReturnRate = Math.max(0, Number(e.target.value) || 0);
+  e.target.value = requiredReturnRate.toFixed(1);
+  update();
+});
+
+const savedTheme = localStorage.getItem("valuaris-theme");
+if(savedTheme === "dark"){
+  document.body.classList.add("dark");
+  themeToggle.textContent = "☀";
+}
+themeToggle.addEventListener("click", ()=>{
+  document.body.classList.toggle("dark");
+  const dark = document.body.classList.contains("dark");
+  themeToggle.textContent = dark ? "☀" : "☾";
+  localStorage.setItem("valuaris-theme", dark ? "dark" : "light");
 });
 
 renderCompanies();
