@@ -55,3 +55,47 @@ body.dark .horizon.active{background:#152127}
 body.dark .navitem,body.dark .settings,body.dark .company-btn{color:#b6c3c9}
 body.dark .navitem.active{background:#173a31;color:#7fd5b0}
 body.dark .return-control>div,body.dark .theme-toggle{background:#152127;border-color:#27363d}
+
+/* Demo input cleanup */
+input[type="number"]{
+  appearance:textfield;
+  -moz-appearance:textfield;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button{
+  -webkit-appearance:none;
+  margin:0;
+}
+.num{
+  background:#f6f9f9;
+  border:1px solid #cfdadd;
+  box-shadow:inset 0 1px 2px rgba(15,27,42,.03);
+}
+.num:hover{border-color:#aebfc4}
+.num:focus{
+  background:#fff;
+  outline:0;
+  border-color:#68aa90;
+  box-shadow:0 0 0 3px rgba(17,118,93,.10);
+}
+body.dark .num{
+  background:#1b2a31;
+  color:#eef5f6;
+  border-color:#354850;
+  box-shadow:none;
+}
+body.dark .num:hover{border-color:#4d646d}
+body.dark .num:focus{
+  background:#20323a;
+  border-color:#58ad8c;
+  box-shadow:0 0 0 3px rgba(88,173,140,.13);
+}
+body.dark .range-inputs>span{color:#6f858e}
+body.dark .valuation-track{
+  background:linear-gradient(90deg,#193a31 0 33%,#423c28 33% 67%,#482d2c 67%);
+}
+body.dark .valuation-dot{border-color:#152127}
+.valuation{min-width:260px}
+.valuation-pair{margin-bottom:7px}
+.valuation-row{grid-template-columns:48px minmax(120px,1fr) 42px}
+.valuation-row.future .valuation-track{outline:1px solid rgba(47,143,194,.18)}
