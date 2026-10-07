@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Valuaris — Mr. Market Stock</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brandmark">⌁</div>
+      <div><h1>Valuaris</h1><p>Value over noise</p></div>
+    </div>
+    <nav class="nav">
+      <a class="navitem" href="/">⌂ <span>Overview</span></a>
+      <button class="navitem">◔ <span>Portfolio</span></button>
+      <a class="navitem active" href="/mr-market">▥ <span>Mr. Market</span></a>
+    </nav>
+    <div class="section-label">Companies</div>
+    <div id="marketCompanyList" class="companies"></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h2 id="pageTitle">Mr. Market</h2>
+        <p>Price history compared with the selected regression trend.</p>
+      </div>
+      <div class="top-controls">
+        <label class="return-control">
+          <span>Regression</span>
+          <div>
+            <select id="regressionMethod">
+              <option value="log" selected>Log-linear · full history</option>
+              <option value="log_20y">Log-linear · 20Y</option>
+              <option value="log_10y">Log-linear · 10Y</option>
+              <option value="log_5y">Log-linear · 5Y</option>
+              <option value="linear">Linear price</option>
+            </select>
+          </div>
+        </label>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle night mode" title="Night mode">☾</button>
+      </div>
+    </header>
+
+    <section class="market-summary">
+      <article class="card market-stat"><span>Company</span><strong id="marketName">—</strong></article>
+      <article class="card market-stat"><span>Latest close</span><strong id="marketPrice">—</strong></article>
+      <article class="card market-stat"><span>Price / trend</span><strong id="marketRatio">—</strong></article>
+      <article class="card market-stat"><span>Trend growth</span><strong id="marketGrowth">—</strong></article>
+    </section>
+
+    <section class="card market-chart-card">
+      <div class="card-title-row">
+        <div>
+          <h3 id="chartTitle">Historical price and trend</h3>
+          <p id="chartSubtitle">Locally stored daily closes.</p>
+        </div>
+        <span class="pill" id="marketMood">—</span>
+      </div>
+      <svg id="marketChart" class="market-chart" viewBox="0 0 1200 560" role="img" aria-label="Stock price and regression trend"></svg>
+    </section>
+
+    <section class="card market-note">
+      <strong>Interpretation</strong>
+      <span>This page shows one stock only. Use the Mr. Market navigation item to return to the normalized all-stock comparison.</span>
+    </section>
+  </main>
+
+  <script src="/mr_market_stock.js"></script>
+</body>
+</html>
