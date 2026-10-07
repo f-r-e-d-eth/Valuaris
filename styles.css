@@ -225,3 +225,15 @@ body.dark .trend-line{stroke:#58c59d}
 .market-note{margin-top:16px;padding:16px 20px;display:flex;gap:12px;align-items:center}
 .market-note span{color:var(--muted);font-size:13px}
 @media(max-width:900px){.market-summary{grid-template-columns:repeat(2,1fr)}}
+
+.combined-card{margin-top:16px}
+.value-one-line{stroke:#11765d;stroke-width:2.5;stroke-dasharray:8 7;opacity:.9}
+.combined-line{fill:none;stroke-width:1.8;opacity:.8}
+.combined-label{font-size:12px;font-weight:800}
+.line-0{stroke:#168065;fill:#168065}
+.line-1{stroke:#8a6ec7;fill:#8a6ec7}
+.line-2{stroke:#c47a36;fill:#c47a36}
+.line-3{stroke:#3d88b8;fill:#3d88b8}
+.line-4{stroke:#bb5f78;fill:#bb5f78}
+.line-5{stroke:#7f8f3d;fill:#7f8f3d}
+body.dark .value-one-line{stroke:#58c59d}
