@@ -98,6 +98,11 @@ def mr_market():
     return send_from_directory(ROOT, "mr_market.html")
 
 
+@app.route("/mr-market/<path:symbol>")
+def mr_market_stock(symbol):
+    return send_from_directory(ROOT, "mr_market_stock.html")
+
+
 @app.route("/api/stocks")
 def api_stocks():
     stocks = []
