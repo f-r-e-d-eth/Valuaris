@@ -27,13 +27,17 @@ def main():
         # - auto_adjust=False keeps Close and Adj Close as separate columns.
         # - Close is what we want to inspect for the first Mr. Market test.
         # - repair=True asks yfinance to repair known Yahoo price/currency issues.
-        history = ticker.history(
-            period="max",
-            interval="1d",
-            auto_adjust=False,
-            actions=True,
-            repair=True,
-        )
+        try:
+            history = ticker.history(
+                period="max",
+                interval="1d",
+                auto_adjust=False,
+                actions=True,
+                repair=True,
+            )
+        except Exception as exc:
+            print(f"ERROR: {type(exc).__name__}: {exc}")
+            continue
 
         if history.empty:
             print("No data returned.")
