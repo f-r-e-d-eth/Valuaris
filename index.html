@@ -48,17 +48,17 @@
       <article class="card portfolio-card top-portfolio">
         <div class="card-title-row">
           <div>
-            <h3>Portfolio value vs. intrinsic value</h3>
-            <p>Market value compared with today's and future intrinsic range.</p>
+            <h3>Watchlist valuation</h3>
+            <p>Current market price compared with your own intrinsic-value ranges.</p>
           </div>
-          <span class="pill" id="portfolioRatio">—</span>
+          <span class="pill" id="dataStatus">Local data</span>
         </div>
-        <div id="portfolioBars" class="portfolio-bars top-bars"></div>
+        <div id="watchlistSummary" class="watchlist-summary"></div>
       </article>
 
       <article class="card metric owned-card">
         <span>Stocks owned</span>
-        <strong id="stocksOwned">0 / 10</strong>
+        <strong id="stocksOwned">0 / 3</strong>
         <div id="ownedDots" class="dots"></div>
       </article>
     </section>
@@ -69,10 +69,10 @@
           <thead>
             <tr>
               <th>Company</th>
-              <th>Price<br><small>(EUR)</small></th>
-              <th>Intrinsic value<br><small>(EUR / share)</small></th>
+              <th>Price<br><small>(native)</small></th>
+              <th>Intrinsic value<br><small>(native / share)</small></th>
               <th>Growth<br><small>(% / year)</small></th>
-              <th id="futureTableHeading">5Y value<br><small>(EUR / share)</small></th>
+              <th id="futureTableHeading">5Y value<br><small>(native / share)</small></th>
               <th>Owned<br><small>(shares)</small></th>
               <th class="valuation-help">Price vs. value <span class="help-icon">?</span><br><small>today / discounted future</small>
   <div class="valuation-tooltip">
@@ -86,7 +86,7 @@
           <tbody id="stockRows"></tbody>
         </table>
       </div>
-      <p class="hint">Price is placeholder data. Future valuation is discounted back to today using the single global required return above.</p>
+      <p class="hint">Prices are the latest locally stored Yahoo closes in each listing's native currency. Intrinsic values, growth and shares are your own assumptions and are stored in this browser. Portfolio totals are intentionally not combined until FX conversion is added.</p>
     </section>
 
 
