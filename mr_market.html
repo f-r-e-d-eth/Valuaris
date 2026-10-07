@@ -32,8 +32,11 @@
           <span>Regression</span>
           <div>
             <select id="regressionMethod">
+              <option value="log" selected>Log-linear · full history</option>
+              <option value="log_20y">Log-linear · 20Y</option>
+              <option value="log_10y">Log-linear · 10Y</option>
+              <option value="log_5y">Log-linear · 5Y</option>
               <option value="linear">Linear price</option>
-              <option value="log">Log-linear price</option>
             </select>
           </div>
         </label>
@@ -59,9 +62,19 @@
       <svg id="marketChart" class="market-chart" viewBox="0 0 1200 560" role="img" aria-label="Stock price and regression trend"></svg>
     </section>
 
+    <section class="card market-chart-card combined-card">
+      <div class="card-title-row">
+        <div>
+          <h3>All stocks — price / model value</h3>
+          <p>1.00 means the market price sits exactly on the selected regression value.</p>
+        </div>
+      </div>
+      <svg id="combinedChart" class="market-chart combined-chart" viewBox="0 0 1200 520" role="img" aria-label="All stocks normalized by regression value"></svg>
+    </section>
+
     <section class="card market-note">
-      <strong>First Mr. Market model</strong>
-      <span>The line is intentionally simple. Use the dropdown to compare regression ideas; we can add more methods later.</span>
+      <strong>Mr. Market model</strong>
+      <span>Zero or negative model values are ignored. Use the dropdown to compare regression windows.</span>
     </section>
   </main>
 
