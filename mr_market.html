@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Valuaris — Mr. Market</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <aside class="sidebar">
@@ -25,7 +25,7 @@
     <header class="topbar">
       <div>
         <h2>Mr. Market</h2>
-        <p>How far is today's price from its long-term trend?</p>
+        <p>All watched stocks compared on one normalized scale.</p>
       </div>
       <div class="top-controls">
         <label class="return-control">
@@ -44,40 +44,22 @@
       </div>
     </header>
 
-    <section class="market-summary">
-      <article class="card market-stat"><span>Company</span><strong id="marketName">—</strong></article>
-      <article class="card market-stat"><span>Latest close</span><strong id="marketPrice">—</strong></article>
-      <article class="card market-stat"><span>Price / trend</span><strong id="marketRatio">—</strong></article>
-      <article class="card market-stat"><span>Trend growth</span><strong id="marketGrowth">—</strong></article>
-    </section>
-
     <section class="card market-chart-card">
-      <div class="card-title-row">
-        <div>
-          <h3 id="chartTitle">Historical price and trend</h3>
-          <p id="chartSubtitle">20 years of locally stored daily closes.</p>
-        </div>
-        <span class="pill" id="marketMood">—</span>
-      </div>
-      <svg id="marketChart" class="market-chart" viewBox="0 0 1200 560" role="img" aria-label="Stock price and regression trend"></svg>
-    </section>
-
-    <section class="card market-chart-card combined-card">
       <div class="card-title-row">
         <div>
           <h3>All stocks — price / model value</h3>
           <p>1.00 means the market price sits exactly on the selected regression value.</p>
         </div>
       </div>
-      <svg id="combinedChart" class="market-chart combined-chart" viewBox="0 0 1200 520" role="img" aria-label="All stocks normalized by regression value"></svg>
+      <svg id="combinedChart" class="market-chart combined-chart" viewBox="0 0 1200 560" role="img" aria-label="All stocks normalized by regression value"></svg>
     </section>
 
     <section class="card market-note">
-      <strong>Mr. Market model</strong>
-      <span>Zero or negative model values are ignored. Use the dropdown to compare regression windows.</span>
+      <strong>Reading the chart</strong>
+      <span>Above 1.00 means price is above its model trend; below 1.00 means below trend. Zero or negative model values are ignored.</span>
     </section>
   </main>
 
-  <script src="mr_market.js"></script>
+  <script src="/mr_market.js"></script>
 </body>
 </html>
